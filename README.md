@@ -1,5 +1,5 @@
 ## 漠星曜的小站
 
-<https://cyao.tk/yuedu>
+<https://cyao.eu.org/yuedu>
 
-<https://cyao.tk/files>
+<https://cyao.eu.org/files>
