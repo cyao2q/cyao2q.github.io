@@ -23,6 +23,8 @@ function onLoad() {
         calcCanvasHeight();
     });
 
+    $id("RawJson").focus();
+
     var clipboard = new Clipboard('#copy');
     clipboard.on('success', function () {
         console.log("复制成功");
