@@ -11,6 +11,8 @@ function IsArray(obj) {
     return obj && typeof obj === 'object' && typeof obj.length === 'number' && !(obj.propertyIsEnumerable('length'));
 }
 
+var times = 0;
+
 function Process() {
     SetTab();
     window.IsCollapsible = $id("CollapsibleView").checked;
@@ -24,6 +26,10 @@ function Process() {
     } catch (e) {
         console.log("JSON数据格式不正确:\n" + e.message);
         $id("Canvas").innerHTML = "JSON数据格式不正确";
+    }
+    if (times == 0) {
+        times = 1;
+        $id("RawJson").blur();
     }
     //SelectAllClicked();
 }
