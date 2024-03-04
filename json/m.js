@@ -15,6 +15,7 @@ function onLoad() {
     if (version) {
         __utmSetVar(version);
     }
+
     calcCanvasHeight();
 
     //每次窗口大小發生變化時都沖洗計算Canvas Div的高度
@@ -23,10 +24,10 @@ function onLoad() {
     });
 
     var clipboard = new Clipboard('#copy');
-    clipboard.on('success', function (e) {
+    clipboard.on('success', function () {
         console.log("复制成功");
     });
-    clipboard.on('error', function (e) {
+    clipboard.on('error', function () {
         console.log("复制失败");
     });
 }

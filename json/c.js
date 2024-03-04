@@ -22,10 +22,9 @@ function Process() {
         html = ProcessObject(obj[0], 0, false, false, false);
         $id("Canvas").innerHTML = "<PRE class='CodeContainer'>" + html + "</PRE>";
     } catch (e) {
-        alert("JSON数据格式不正确:\n" + e.message);
-        $id("Canvas").innerHTML = "";
+        console.log("JSON数据格式不正确:\n" + e.message);
+        $id("Canvas").innerHTML = "JSON数据格式不正确";
     }
-    $id("RawJson").blur();
     //SelectAllClicked();
 }
 
