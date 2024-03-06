@@ -39,7 +39,7 @@ window._regexpObj = new RegExp();
 
 function ProcessObject(obj, indent, addComma, isArray, isPropertyContent) {
     var html = "";
-    var comma = (addComma) ? "<span class='Comma'>,</span> " : "";
+    var comma = (addComma) ? "<span class='Comma'>,</span>" : "";
     var type = typeof obj;
     var clpsHtml = "";
     if (IsArray(obj)) {
