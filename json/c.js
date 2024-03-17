@@ -3,6 +3,13 @@ window.ImgCollapsed = "Collapsed.gif";
 window.ImgExpanded = "Expanded.gif";
 window.QuoteKeys = true;
 
+var trigger_paste = 0;
+
+window.addEventListener('paste',(e)=>{
+    trigger_paste = 1;
+    console.log("trigger paste");
+})
+
 function $id(id) {
     return document.getElementById(id);
 }
@@ -10,8 +17,6 @@ function $id(id) {
 function IsArray(obj) {
     return obj && typeof obj === 'object' && typeof obj.length === 'number' && !(obj.propertyIsEnumerable('length'));
 }
-
-var times = 0;
 
 function Process() {
     SetTab();
@@ -27,8 +32,8 @@ function Process() {
         console.log("JSON数据格式不正确:\n" + e.message);
         $id("Canvas").innerHTML = "JSON数据格式不正确";
     }
-    if (times == 0) {
-        times = 1;
+    if (trigger_paste == 1) {
+        trigger_paste = 0;
         $id("RawJson").blur();
     }
     //SelectAllClicked();
