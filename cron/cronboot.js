@@ -121,6 +121,8 @@ function reverseExp() {
     var txt = $("#cron").val();
 
     if (txt) {
+        $(":checkbox").iCheck('uncheck');
+
         var regs = txt.split(' ');
         expObj(regs[0], "second");
         expObj(regs[1], "min");
