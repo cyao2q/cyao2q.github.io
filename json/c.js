@@ -3,13 +3,6 @@ window.ImgCollapsed = "Collapsed.gif";
 window.ImgExpanded = "Expanded.gif";
 window.QuoteKeys = true;
 
-var trigger_paste = 0;
-
-window.addEventListener('paste',(e)=>{
-    trigger_paste = 1;
-    console.log("trigger paste");
-})
-
 function $id(id) {
     return document.getElementById(id);
 }
@@ -22,9 +15,12 @@ function Process() {
     SetTab();
     window.IsCollapsible = $id("CollapsibleView").checked;
     var json = $id("RawJson").value;
+    if (json == "") {
+        $id("Canvas").innerHTML = "<PRE class='CodeContainer'></PRE>";
+        return;
+    }
     var html = "";
     try {
-        if (json == "") json = "\"\"";
         var obj = eval("[" + json + "]");
         html = ProcessObject(obj[0], 0, false, false, false);
         $id("Canvas").innerHTML = "<PRE class='CodeContainer'>" + html + "</PRE>";
@@ -32,11 +28,6 @@ function Process() {
         console.log("JSON数据格式不正确:\n" + e.message);
         $id("Canvas").innerHTML = "JSON数据格式不正确";
     }
-    if (trigger_paste == 1) {
-        trigger_paste = 0;
-        $id("RawJson").blur();
-    }
-    //SelectAllClicked();
 }
 
 window._dateObj = new Date();
@@ -215,25 +206,4 @@ function MultiplyString(num, str) {
         sb.push(str);
     }
     return sb.join("");
-}
-
-function SelectAllClicked() {
-    if (!!document.selection && !!document.selection.empty) {
-        document.selection.empty();
-    } else if (window.getSelection) {
-        var sel = window.getSelection();
-        if (sel.removeAllRanges) {
-            window.getSelection().removeAllRanges();
-        }
-    }
-    var range = (!!document.body && !!document.body.createTextRange) ? document.body.createTextRange() : document.createRange();
-    if (!!range.selectNode) range.selectNode($id("Canvas")); else if (range.moveToElementText) range.moveToElementText($id("Canvas"));
-    if (!!range.select) range.select($id("Canvas")); else window.getSelection().addRange(range);
-}
-
-function LinkToJson() {
-    var val = $id("RawJson").value;
-    val = escape(val.split('/n').join(' ').split('/r').join(' '));
-    $id("InvisibleLinkUrl").value = val;
-    $id("InvisibleLink").submit();
 }
