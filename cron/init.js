@@ -41,19 +41,14 @@ function inition() {
     //解析按钮绑定函数
     $('#explain').click(function () {
         reverseExp();
-        $.post("https://cron.ciding.cc/getCornTimes", {
-            "cronExpression": $("#cron").val(),
-            "time": 5
-        }, function (data) {
+        $.get("https://api.cyao.eu.org/https://www.pppet.net/preview?p="+encodeURI($("#cron").val()),function(data){
             console.log(JSON.stringify(data));
-            if (data.msg === "ok") {
-                var html = "";
-                data.datas.forEach(item => {
-                    html += "<p>" + item + "</p>";
-                });
-                $("#explainResult").html(html);
-            }
-        })
+            var html = "";
+            data.forEach(item => {
+                html += "<p>" + item + "</p>";
+            });
+            $("#explainResult").html(html);
+        });
     });
 
     initFirstRadio();
