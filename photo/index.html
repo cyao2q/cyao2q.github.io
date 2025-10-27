@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SandPhoto - ID Photo Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📸 SandPhoto</h1>
+            <p>Generate ID photos efficiently - save money on photo printing!</p>
+        </header>
+
+        <main>
+            <div id="sandphoto-form-container">
+                <!-- Form will be generated here by JavaScript -->
+            </div>
+        </main>
+
+        <footer>
+            <p>Pure client-side implementation - your photos never leave your device!</p>
+        </footer>
+    </div>
+
+    <script src="phototypes.js"></script>
+    <script src="sandphoto.js"></script>
+    <script src="ui-generator.js"></script>
+    <script src="app.js"></script>
+    <script>
+        // Set your language here (only one place)
+        const language = 'zh'; // Change to 'zh', 'es', etc. as needed
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get the config for the selected language
+            const langConfig = UIGenerator.getLanguageConfig(language);
+            const uiConfig = {
+                ...langConfig,
+                previewType: 'canvas'
+            };
+            const uiGenerator = new UIGenerator(uiConfig);
+
+            // Generate the complete form
+            const form = uiGenerator.generateCompleteForm('sandphoto-form');
+            const container = document.getElementById('sandphoto-form-container');
+            container.appendChild(form);
+
+            // Create app with main page configuration
+            const mainConfig = {
+                language: language,
+                elementIds: {
+                    uploadArea: 'uploadArea',
+                    photoInput: 'filename',
+                    targetTypeSelect: 'targetType',
+                    containerTypeSelect: 'containerType',
+                    bgColorSelect: 'bgColor', // Use dropdown
+                    previewSection: 'previewContainer',
+                    previewCanvas: 'previewCanvas',
+                    photoCount: 'count',
+                    downloadBtn: 'downloadBtn',
+                    customSizeGroup: 'customSizeSection',
+                    customSizeGroup2: null,
+                    customWidthInput: 'customWidth',
+                    customHeightInput: 'customHeight',
+                    photoCountSelect: 'photoCountSelect',
+                    customCountGroup: 'photoCountSection',
+                    customPhotoCountInput: 'customPhotoCount',
+                    // Multi-photo elements
+                    singleUploadArea: 'singleUploadArea',
+                    multiUploadArea: 'multiUploadArea',
+                    multiFileInput: 'multiFilename',
+                    photoListContainer: 'photoListContainer',
+                    photoList: 'photoList',
+                    uploadModeRadios: 'uploadMode'
+                },
+                texts: langConfig.texts
+            };
+
+            new SandPhotoApp(mainConfig);
+        });
+    </script>
+</body>
+</html> 

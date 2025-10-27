@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <title>JSON格式化</title>
+    <meta name="description" content="json,格式化,高亮">
+    <meta name="keywords" content="json,格式化,高亮">
+    <link rel="icon" type="image/x-icon" href="https://www.json.cn/r/img/favicon/favicon.ico">
+    <script type="text/javascript" src="c.js"></script>
+    <script type="text/javascript" src="jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="clipboard.js"></script>
+    <style>
+        html, body {
+            margin: 20px;
+            padding: 0;
+        }
+
+        .left {
+            float: left;
+            width: 41.5962%;
+            height: 100%;
+        }
+
+        .right {
+            float: right;
+            width: 58.4038%;
+            height: 100%;
+        }
+
+        #RawJson {
+            width: 97%;
+            height: 85vh;
+            font-size: 22px;
+            border: 1px solid #9E9E9E;
+        }
+
+        #Canvas {
+            width: 97%;
+            height: 85vh;
+            font-size: 22px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="left">
+    <textarea id="RawJson" oninput="Process()"></textarea>
+</div>
+<div class="right">
+    <span id="TabSizeHolder">
+    缩进量
+    <select id="TabSize" onchange="TabSizeChanged()">
+      <option value="1">1</option>
+      <option value="2" selected>2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+    </select>
+      </span>
+    <label for="QuoteKeys">
+        <input type="checkbox" id="QuoteKeys" onclick="QuoteKeysClicked()" checked />
+        引号
+    </label>&nbsp;
+    <a href="javascript:void(0);" id="copy" data-clipboard-action="copy" data-clipboard-target="#Canvas">复制</a>
+    &nbsp;
+    <span id="CollapsibleViewHolder">
+          <label for="CollapsibleView">
+            <input type="checkbox" id="CollapsibleView" onclick="CollapsibleViewClicked()"/>
+            显示控制
+          </label>
+      </span>
+    <span id="CollapsibleViewDetail" style="visibility: hidden;">
+    <a href="javascript:void(0);" onclick="ExpandAllClicked()">展开</a>
+    <a href="javascript:void(0);" onclick="CollapseAllClicked()">叠起</a>
+    <a href="javascript:void(0);" onclick="CollapseLevel(3)">2级</a>
+    <a href="javascript:void(0);" onclick="CollapseLevel(4)">3级</a>
+    <a href="javascript:void(0);" onclick="CollapseLevel(5)">4级</a>
+    <a href="javascript:void(0);" onclick="CollapseLevel(6)">5级</a>
+    <a href="javascript:void(0);" onclick="CollapseLevel(7)">6级</a>
+    <a href="javascript:void(0);" onclick="CollapseLevel(8)">7级</a>
+    <a href="javascript:void(0);" onclick="CollapseLevel(9)">8级</a>
+    </span>
+    <div id="Canvas" class="Canvas"></div>
+</div>
+<script type="text/javascript" src="urchin.js"></script>
+<script type="text/javascript" src="m.js"></script>
+</body>
+</html>
