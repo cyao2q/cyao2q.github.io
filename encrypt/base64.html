@@ -1,0 +1,711 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0039)https://tool.oschina.net/encrypt?type=3 -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>在线加密解密</title>
+
+    <meta http-equiv="Content-Language" content="zh-CN">
+    <meta name="keywords" content="OSCHINA.NET 在线工具,ostools,jsbin,加密/解密，Markdown,less,java api,php api,node.js api,QR Code">
+    <meta name="description"
+          content="OSCHINA.NET在线工具,ostools为开发设计人员提供在线工具，提供jsbin在线 CSS、JS 调试，在线 Java API文档,在线 PHP API文档,在线 Node.js API文档,Less CSS编译器，MarkDown编译器等其他在线工具">
+    <link rel="shortcut icon" href="https://tool.oschina.net/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./resources/basic.css" type="text/css">
+    <link rel="stylesheet" href="./resources/osc-web-new.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="./resources/semantic.css">
+    <script type="text/javascript" src="./resources/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="./resources/jquery.cookies.2.2.0.min.js"></script>
+    <script type="text/javascript" src="./resources/semantic.js"></script>
+    <script type="text/javascript" src="./resources/layout.js"></script>
+    <link rel="stylesheet" href="./resources/bootstrap.min.css">
+
+    <style type="text/css">#_copy {
+        align-items: center;
+        background: #4494d5;
+        border-radius: 3px;
+        color: #fff;
+        cursor: pointer;
+        display: flex;
+        font-size: 13px;
+        height: 30px;
+        justify-content: center;
+        position: absolute;
+        width: 60px;
+        z-index: 1000
+    }
+
+    #select-tooltip, #sfModal, .modal-backdrop, div[id^=reader-helper] {
+        display: none !important
+    }
+
+    .modal-open {
+        overflow: auto !important
+    }
+
+    ._sf_adjust_body {
+        padding-right: 0 !important
+    }
+
+    .enable_copy_btns_div {
+        position: fixed;
+        width: 154px;
+        left: 10px;
+        top: 45%;
+        background: #e7f1ff;
+        border: 2px solid #4595d5;
+        font-weight: 600;
+        border-radius: 2px;
+        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+        z-index: 5000
+    }
+
+    .enable_copy_btns_logo {
+        width: 100%;
+        background: #4595d5;
+        text-align: center;
+        font-size: 12px;
+        color: #e7f1ff;
+        line-height: 30px;
+        height: 30px
+    }
+
+    .enable_copy_btns_btn {
+        display: block;
+        width: 128px;
+        height: 28px;
+        background: #7f5711;
+        border-radius: 4px;
+        color: #fff;
+        font-size: 12px;
+        border: 0;
+        outline: 0;
+        margin: 8px auto;
+        font-weight: 700;
+        cursor: pointer;
+        opacity: .9
+    }
+
+    .enable_copy_btns_btn:hover {
+        opacity: .8
+    }
+
+    .enable_copy_btns_btn:active {
+        opacity: 1
+    }</style>
+    <style id="panai-style">
+        .panai-container {
+            z-index: 99999 !important
+        }
+
+        .panai-popup {
+            font-size: 14px !important
+        }
+
+        .panai-setting-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 20px;
+        }
+
+        .panai-setting-checkbox {
+            width: 16px;
+            height: 16px;
+        }
+    </style>
+    <style id="instant-style">
+        .instant-popup {
+            font-size: 14px !important;
+        }
+
+        .instant-setting-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 15px;
+        }
+
+        .instant-setting-label-col {
+            display: flex;
+            align-items: flex-start;;
+            padding-top: 15px;
+            flex-direction: column
+        }
+
+        .instant-setting-checkbox {
+            width: 16px;
+            height: 16px;
+        }
+
+        .instant-setting-textarea {
+            width: 100%;
+            margin: 14px 0 0;
+            height: 60px;
+            resize: none;
+            border: 1px solid #bbb;
+            box-sizing: border-box;
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: #666;
+            line-height: 1.2;
+        }
+
+        .instant-setting-input {
+            border: 1px solid #bbb;
+            box-sizing: border-box;
+            padding: 5px 10px;
+            border-radius: 5px;
+            width: 100px
+        }
+
+        @keyframes instantAnminate {
+            from {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.4
+            }
+            to {
+                opacity: 0.9;
+            }
+        }
+
+        .link-instanted {
+            animation: instantAnminate 0.6s 1;
+            animation-fill-mode: forwards
+        }
+
+        .link-instanted * {
+            animation: instantAnminate 0.6s 1;
+            animation-fill-mode: forwards
+        }
+    </style>
+    <style data-id="immersive-translate-input-injected-css">.immersive-translate-input {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 2147483647;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .immersive-translate-attach-loading::after {
+        content: " ";
+
+        --loading-color: #f78fb6;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        display: block;
+        margin: 12px auto;
+        position: relative;
+        color: white;
+        left: -100px;
+        box-sizing: border-box;
+        animation: immersiveTranslateShadowRolling 1.5s linear infinite;
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-2000%, -50%);
+        z-index: 100;
+    }
+
+    .immersive-translate-loading-spinner {
+        vertical-align: middle !important;
+        width: 10px !important;
+        height: 10px !important;
+        display: inline-block !important;
+        margin: 0 4px !important;
+        border: 2px rgba(221, 244, 255, 0.6) solid !important;
+        border-top: 2px rgba(0, 0, 0, 0.375) solid !important;
+        border-left: 2px rgba(0, 0, 0, 0.375) solid !important;
+        border-radius: 50% !important;
+        padding: 0 !important;
+        -webkit-animation: immersive-translate-loading-animation 0.6s infinite linear !important;
+        animation: immersive-translate-loading-animation 0.6s infinite linear !important;
+    }
+
+    @-webkit-keyframes immersive-translate-loading-animation {
+        from {
+            -webkit-transform: rotate(0deg);
+        }
+
+        to {
+            -webkit-transform: rotate(359deg);
+        }
+    }
+
+    @keyframes immersive-translate-loading-animation {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(359deg);
+        }
+    }
+
+    .immersive-translate-input-loading {
+        --loading-color: #f78fb6;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        display: block;
+        margin: 12px auto;
+        position: relative;
+        color: white;
+        left: -100px;
+        box-sizing: border-box;
+        animation: immersiveTranslateShadowRolling 1.5s linear infinite;
+    }
+
+    @keyframes immersiveTranslateShadowRolling {
+        0% {
+            box-shadow: 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0),
+            0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+        }
+
+        12% {
+            box-shadow: 100px 0 var(--loading-color), 0px 0 rgba(255, 255, 255, 0),
+            0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+        }
+
+        25% {
+            box-shadow: 110px 0 var(--loading-color), 100px 0 var(--loading-color),
+            0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+        }
+
+        36% {
+            box-shadow: 120px 0 var(--loading-color), 110px 0 var(--loading-color),
+            100px 0 var(--loading-color), 0px 0 rgba(255, 255, 255, 0);
+        }
+
+        50% {
+            box-shadow: 130px 0 var(--loading-color), 120px 0 var(--loading-color),
+            110px 0 var(--loading-color), 100px 0 var(--loading-color);
+        }
+
+        62% {
+            box-shadow: 200px 0 rgba(255, 255, 255, 0), 130px 0 var(--loading-color),
+            120px 0 var(--loading-color), 110px 0 var(--loading-color);
+        }
+
+        75% {
+            box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0),
+            130px 0 var(--loading-color), 120px 0 var(--loading-color);
+        }
+
+        87% {
+            box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0),
+            200px 0 rgba(255, 255, 255, 0), 130px 0 var(--loading-color);
+        }
+
+        100% {
+            box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0),
+            200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0);
+        }
+    }
+
+    .immersive-translate-modal {
+        position: fixed;
+        z-index: 2147483647;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+        font-size: 15px;
+    }
+
+    .immersive-translate-modal-content {
+        background-color: #fefefe;
+        margin: 10% auto;
+        padding: 40px 24px 24px;
+        border-radius: 12px;
+        width: 350px;
+        font-family: system-ui, -apple-system, "Segoe UI", "Roboto", "Ubuntu",
+        "Cantarell", "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+        "Segoe UI Symbol", "Noto Color Emoji";
+        position: relative;
+    }
+
+    @media screen and (max-width: 768px) {
+        .immersive-translate-modal-content {
+            margin: 25% auto !important;
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .immersive-translate-modal-content {
+            width: 80vw !important;
+            margin: 20vh auto !important;
+            padding: 20px 12px 12px !important;
+        }
+
+        .immersive-translate-modal-title {
+            font-size: 14px !important;
+        }
+
+        .immersive-translate-modal-body {
+            font-size: 13px !important;
+            max-height: 60vh !important;
+        }
+
+        .immersive-translate-btn {
+            font-size: 13px !important;
+            padding: 8px 16px !important;
+            margin: 0 4px !important;
+        }
+
+        .immersive-translate-modal-footer {
+            gap: 6px !important;
+            margin-top: 16px !important;
+        }
+    }
+
+    .immersive-translate-modal .immersive-translate-modal-content-in-input {
+        max-width: 500px;
+    }
+
+    .immersive-translate-modal-content-in-input .immersive-translate-modal-body {
+        text-align: left;
+        max-height: unset;
+    }
+
+    .immersive-translate-modal-title {
+        text-align: center;
+        font-size: 16px;
+        font-weight: 700;
+        color: #333333;
+    }
+
+    .immersive-translate-modal-body {
+        text-align: center;
+        font-size: 14px;
+        font-weight: 400;
+        color: #333333;
+        margin-top: 24px;
+    }
+
+    @media screen and (max-width: 768px) {
+        .immersive-translate-modal-body {
+            max-height: 250px;
+            overflow-y: auto;
+        }
+    }
+
+    .immersive-translate-close {
+        color: #666666;
+        position: absolute;
+        right: 16px;
+        top: 16px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .immersive-translate-close:hover,
+    .immersive-translate-close:focus {
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .immersive-translate-modal-footer {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 24px;
+    }
+
+    .immersive-translate-btn {
+        width: fit-content;
+        color: #fff;
+        background-color: #ea4c89;
+        border: none;
+        font-size: 14px;
+        margin: 0 8px;
+        padding: 9px 30px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .immersive-translate-btn-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .immersive-translate-btn:hover {
+        background-color: #f082ac;
+    }
+
+    .immersive-translate-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    .immersive-translate-btn:disabled:hover {
+        background-color: #ea4c89;
+    }
+
+    .immersive-translate-link-btn {
+        background-color: transparent;
+        color: #ea4c89;
+        border: none;
+        cursor: pointer;
+        height: 30px;
+        line-height: 30px;
+    }
+
+    .immersive-translate-cancel-btn {
+        /* gray color */
+        background-color: rgb(89, 107, 120);
+    }
+
+    .immersive-translate-cancel-btn:hover {
+        background-color: hsl(205, 20%, 32%);
+    }
+
+    .immersive-translate-action-btn {
+        background-color: transparent;
+        color: #ea4c89;
+        border: 1px solid #ea4c89;
+    }
+
+    .immersive-translate-btn svg {
+        margin-right: 5px;
+    }
+
+    .immersive-translate-link {
+        cursor: pointer;
+        user-select: none;
+        -webkit-user-drag: none;
+        text-decoration: none;
+        color: #ea4c89;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .immersive-translate-primary-link {
+        cursor: pointer;
+        user-select: none;
+        -webkit-user-drag: none;
+        text-decoration: none;
+        color: #ea4c89;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .immersive-translate-modal input[type="radio"] {
+        margin: 0 6px;
+        cursor: pointer;
+    }
+
+    .immersive-translate-modal label {
+        cursor: pointer;
+    }
+
+    .immersive-translate-close-action {
+        position: absolute;
+        top: 2px;
+        right: 0px;
+        cursor: pointer;
+    }
+
+    .imt-image-status {
+        background-color: rgba(0, 0, 0, 0.5) !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border-radius: 16px !important;
+    }
+
+    .imt-image-status img,
+    .imt-image-status svg,
+    .imt-img-loading {
+        width: 28px !important;
+        height: 28px !important;
+        margin: 0 0 8px 0 !important;
+        min-height: 28px !important;
+        min-width: 28px !important;
+        position: relative !important;
+    }
+
+    .imt-img-loading {
+        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAMAAACfWMssAAAAtFBMVEUAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////oK74hAAAAPHRSTlMABBMIDyQXHwyBfFdDMSw+OjXCb+5RG51IvV/k0rOqlGRM6KKMhdvNyZBz9MaupmxpWyj437iYd/yJVNZeuUC7AAACt0lEQVRIx53T2XKiUBCA4QYOiyCbiAsuuGBcYtxiYtT3f6/pbqoYHVFO5r+iivpo6DpAWYpqeoFfr9f90DsYAuRSWkFnPO50OgR9PwiCUFcl2GEcx+N/YBh6pvKaefHlUgZd1zVe0NbYcQjGBfzrPE8Xz8aF+71D8gG6DHFPpc4a7xFiCDuhaWgKgGIJQ3d5IMGDrpS4S5KgpIm+en9f6PlAhKby4JwEIxlYJV9h5k5nee9GoxHJ2IDSNB0dwdad1NAxDJ/uXDHYmebdk4PdbkS58CIVHdYSUHTYYRWOJblWSyu2lmy3KNFVJNBhxcuGW4YBVCbYGRZwIooipHsNqjM4FbgOQqQqSKQQU9V8xmi1QlgHqQQ6DDBvRUVCDirs+EzGDGOQTCATgtYTnbCVLgsVgRE0T1QE0qHCFAht2z6dLvJQs3Lo2FQoDxWNUiBhaP4eRgwNkI+dAjVOA/kUrIDwf3CG8NfNOE0eiFotSuo+rBiq8tD9oY4Qzc6YJw99hl1wzpQvD7ef2M8QgnOGJfJw+EltQc+oX2yn907QB22WZcvlUpd143dqQu+8pCJZuGE4xCuPXJqqcs5sNpsI93Rmzym1k4Npk+oD1SH3/a3LOK/JpUBpWfqNySxWzCfNCUITuDG5dtuphrUJ1myeIE9bIsPiKrfqTai5WZxbhtNphYx6GEIHihyGFTI69lje/rxajdh0s0msZ0zYxyPLhYCb1CyHm9Qsd2H37Y3lugVwL9kNh8Ot8cha6fUNQ8nuXi5z9/ExsAO4zQrb/ev1yrCB7lGyQzgYDGuxq1toDN/JGvN+HyWNHKB7zEoK+PX11e12G431erGYzwmytAWU56fkMHY5JJnDRR2eZji3AwtIcrEV8Cojat/BdQ7XOwGV1e1hDjGGjXbdArm8uJZtCH5MbcctVX8A1WpqumJHwckAAAAASUVORK5CYII=");
+        background-size: 28px 28px;
+        animation: image-loading-rotate 1s linear infinite !important;
+    }
+
+    .imt-image-status span {
+        color: var(--bg-2, #fff) !important;
+        font-size: 14px !important;
+        line-height: 14px !important;
+        font-weight: 500 !important;
+        font-family: "PingFang SC", Arial, sans-serif !important;
+    }
+
+    .imt-primary-button {
+        display: flex;
+        padding: 12px 80px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        border-radius: 8px;
+        background: #ea4c89;
+        color: #fff;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 24px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .imt-retry-text {
+        color: #999;
+        text-align: center;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 21px;
+        cursor: pointer;
+    }
+
+    .imt-action-container {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .imt-modal-content-text {
+        text-align: left;
+        color: #333;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+    }
+
+    @keyframes image-loading-rotate {
+        from {
+            transform: rotate(360deg);
+        }
+        to {
+            transform: rotate(0deg);
+        }
+    }
+
+    .imt-linear-gradient-text {
+        background: linear-gradient(90deg, #00a6ff 0%, #c369ff 52.4%, #ff4590 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .imt-flex-center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .imt-linear-black-btn {
+        border-radius: 50px;
+        background: linear-gradient(66deg, #222 19%, #696969 94.25%);
+        height: 48px;
+        width: 100%;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        justify-content: center;
+    }
+    </style>
+</head>
+<body inmaintabuse="1">
+
+<script>
+    $(document).on('click', '#moreMenu', function () {
+        let display = document.getElementById("moreMenuDropDown").style.display
+        console.log('moreMenu', display);
+        if (display === 'block') {
+            document.getElementById("moreMenuDropDown").style.display = "none";
+            document.getElementById("moreMenu").style.color = "rgba(255,255,255,.7)";
+            document.getElementById("moreMenu").style.fontWeight = "400";
+        } else {
+            document.getElementById("moreMenuDropDown").style.display = "block";
+            document.getElementById("moreMenu").style.color = "#fff";
+            document.getElementById("moreMenu").style.fontWeight = "700";
+        }
+    });
+    $(document).on('click', '#searchIcon', function () {
+        var searchForm = $(this).parents('.search-item:eq(0)');
+        var q = searchForm.find('input[name=q]').val().trim();
+        // 无关键词时不响应
+        if (q.length > 0) {
+            searchForm.submit();
+        }
+    });
+</script>
+<div class="wrapper ad-wrap" style="margin-top: 15px">
+
+</div>
+<script type="text/javascript" src="./resources/core-min.js"></script>
+<script type="text/javascript" src="./resources/enc-base64-min.js"></script>
+<div id="mainContent" class="wrapper">
+    <div class="toolName">在线加密解密(采用<a id="crypto" href="http://www.oschina.net/p/crypto-js" data-original-title="">Crypto-JS</a>实现)</div>
+    <div class="toolUsing clearfix">
+        <div class="toolsTab  clearfix">
+            <ul class="nav nav-tabs">
+                <li><a onclick="location.href='https://tool.oschina.net/encrypt'">加密/解密</a></li>
+                <li><a onclick="location.href='index.html'">散列/哈希</a></li>
+                <li class="active"><a onclick="location.href='base64.html'">BASE64</a></li>
+                <li><a onclick="location.href='https://tool.oschina.net/encrypt?type=4'">图片/BASE64转换</a></li>
+            </ul>
+            <div class="clear"></div>
+        </div>
+        <div class="leftBar">
+            <div class="title">明文:</div>
+            <textarea name="message" id="source" class="text_source" onfocus="if(this.value=='this is a example'){this.value='';}this.select();"
+                      onblur="(this.value=='')?this.value='this is a example':this.value;">this is a example</textarea>
+        </div>
+
+        <div class="operateLR">
+            <div class="OptDetail Button">
+                <button class="btn btn-primary" onclick="base64_encode();" style="margin-bottom:10px;">BASE64编码<i
+                        class="icon-chevron-right icon-white"></i></button>
+                <button class="btn btn-primary" onclick="base64_decode();"><i class="icon-chevron-left icon-white"></i>BASE64解码</button>
+            </div>
+        </div>
+
+        <div class="rightBar">
+            <div class="title">BASE64:</div>
+            <textarea name="cipher" id="result"></textarea>
+        </div>
+        <script>
+            function base64_encode() {
+                var str = CryptoJS.enc.Utf8.parse($("#source").val());
+                var base64 = CryptoJS.enc.Base64.stringify(str);
+                $("#result").val(base64);
+            }
+
+            function base64_decode() {
+                var words = CryptoJS.enc.Base64.parse($("#result").val());
+                $("#source").val(words.toString(CryptoJS.enc.Utf8));
+            }
+        </script>
+    </div>
+</div>
+</body>
+</html>

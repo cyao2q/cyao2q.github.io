@@ -751,10 +751,10 @@
     <div class="toolUsing clearfix">
         <div class="toolsTab  clearfix">
             <ul class="nav nav-tabs">
-                <li><a onclick="javascript:location.href=&#39;https://tool.oschina.net/encrypt&#39;">加密/解密</a></li>
-                <li class="active"><a onclick="javascript:location.href=&#39;https://tool.oschina.net/encrypt?type=2&#39;">散列/哈希</a></li>
-                <li><a onclick="javascript:location.href=&#39;https://tool.oschina.net/encrypt?type=3&#39;">BASE64</a></li>
-                <li><a onclick="javascript:location.href=&#39;https://tool.oschina.net/encrypt?type=4&#39;">图片/BASE64转换</a></li>
+                <li><a onclick="location.href='https://tool.oschina.net/encrypt'">加密/解密</a></li>
+                <li class="active"><a onclick="location.href='index.html'">散列/哈希</a></li>
+                <li><a onclick="location.href='base64.html'">BASE64</a></li>
+                <li><a onclick="location.href='https://tool.oschina.net/encrypt?type=4'">图片/BASE64转换</a></li>
             </ul>
             <div class="clear"></div>
         </div>
@@ -803,9 +803,9 @@
                 <td>
                     <label>明文：</label>
                     <div class="topBar">
-                        <textarea name="message" id="message_source" value="this is a example"
-                                  onfocus="if(this.value==&#39;this is a example&#39;){this.value=&#39;&#39;;};this.select();"
-                                  onblur="(this.value==&#39;&#39;)?this.value=&#39;this is a example&#39;:this.value;"
+                        <textarea name="message" id="message_source"
+                                  onfocus="if(this.value=='this is a example'){this.value='';}this.select();"
+                                  onblur="(this.value=='')?this.value='this is a example':this.value;"
                                   class="text_source">this is a example</textarea>
                     </div>
                 </td>
@@ -815,26 +815,26 @@
                     <label>散列/哈希算法：</label>
                     <div>
                         <div style="height:45px;margin:5px 0 5px 0;">
-                            <button id="btn_sha1" class="btn btn-primary span2" onclick="javascript:hash(&#39;sha1&#39;);">SHA1</button>
-                            <button id="btn_sha224" class="btn btn-primary span2" onclick="javascript:hash(&#39;sha224&#39;);">SHA224</button>
-                            <button id="btn_sha256" class="btn btn-primary span2" onclick="javascript:hash(&#39;sha256&#39;);">SHA256</button>
-                            <button id="btn_sha384" class="btn btn-primary span2" onclick="javascript:hash(&#39;sha384&#39;);">SHA384</button>
-                            <button id="btn_sha512" class="btn btn-primary span2" onclick="javascript:hash(&#39;sha512&#39;);">SHA512</button>
-                            <button id="btn_md5" class="btn btn-primary span2" onclick="javascript:hash(&#39;md5&#39;);">MD5</button>
+                            <button id="btn_sha1" class="btn btn-primary span2" onclick="hash('sha1');">SHA1</button>
+                            <button id="btn_sha224" class="btn btn-primary span2" onclick="hash('sha224');">SHA224</button>
+                            <button id="btn_sha256" class="btn btn-primary span2" onclick="hash('sha256');">SHA256</button>
+                            <button id="btn_sha384" class="btn btn-primary span2" onclick="hash('sha384');">SHA384</button>
+                            <button id="btn_sha512" class="btn btn-primary span2" onclick="hash('sha512');">SHA512</button>
+                            <button id="btn_md5" class="btn btn-primary span2" onclick="hash('md5');">MD5</button>
                         </div>
                         <div style="height:45px;margin:5px 0 5px 0;">
                             <div class="btn-group" data-toggle="buttons-radio">
-                                <button id="btn_hmacsha1" class="btn btn-primary span2" onclick="javascript:show_pwd(&#39;hmacsha1&#39;);">HmacSHA1</button>
-                                <button id="btn_hmacsha224" class="btn btn-primary span2" onclick="javascript:show_pwd(&#39;hmacsha224&#39;);">HmacSHA224
+                                <button id="btn_hmacsha1" class="btn btn-primary span2" onclick="show_pwd('hmacsha1');">HmacSHA1</button>
+                                <button id="btn_hmacsha224" class="btn btn-primary span2" onclick="show_pwd('hmacsha224');">HmacSHA224
                                 </button>
-                                <button id="btn_hmacsha256" class="btn btn-primary span2" onclick="javascript:show_pwd(&#39;hmacsha256&#39;);">HmacSHA256
+                                <button id="btn_hmacsha256" class="btn btn-primary span2" onclick="show_pwd('hmacsha256');">HmacSHA256
                                 </button>
-                                <button id="btn_hmacsha384" class="btn btn-primary span2" onclick="javascript:show_pwd(&#39;hmacsha384&#39;);">HmacSHA384
+                                <button id="btn_hmacsha384" class="btn btn-primary span2" onclick="show_pwd('hmacsha384');">HmacSHA384
                                 </button>
-                                <button id="btn_hmacsha512" class="btn btn-primary span2" onclick="javascript:show_pwd(&#39;hmacsha512&#39;);">HmacSHA512
+                                <button id="btn_hmacsha512" class="btn btn-primary span2" onclick="show_pwd('hmacsha512');">HmacSHA512
                                 </button>
-                                <button id="btn_hmacmd5" class="btn btn-primary span2" onclick="javascript:show_pwd(&#39;hmacmd5&#39;);">HmacMD5</button>
-                                <button id="btn_pbkdf2" class="btn btn-primary span2" onclick="javascript:show_pwd(&#39;pbkdf2&#39;);">PBKDF2</button>
+                                <button id="btn_hmacmd5" class="btn btn-primary span2" onclick="show_pwd('hmacmd5');">HmacMD5</button>
+                                <button id="btn_pbkdf2" class="btn btn-primary span2" onclick="show_pwd('pbkdf2');">PBKDF2</button>
                             </div>
                         </div>
                     </div>
@@ -866,7 +866,7 @@
     					<span class="add-on">迭代次数：</span><input type="text" id="iterations" class="input-small" placeholder="输入迭代次数">
 						</div>
     				</span>
-                            <a class="btn" href="javascript:hash($(&#39;#hmac_type&#39;).val(),true);">哈希/散列 <i
+                            <a class="btn" href="javascript:hash($('#hmac_type').val(),true);">哈希/散列 <i
                                     class="icon-chevron-down icon-black"></i></a>
                         </form>
                     </div>
