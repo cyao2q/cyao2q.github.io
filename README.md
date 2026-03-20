@@ -16,8 +16,6 @@
 
 <https://cyao2q.github.io/encrypt>
 
-<https://cyao2q.github.io/wallpaper>
-
 <https://cyao2q.github.io/moments>
 
 <https://cyao2q.github.io/pay-qrcode>
