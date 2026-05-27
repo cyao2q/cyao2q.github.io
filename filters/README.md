@@ -26,6 +26,6 @@
 ### Other
 <https://easylist.to/easylist/easylist.txt>
 
-<https://cyao2q.github.io/files/ext/EasyList.txt>
+<https://cyao2q.github.io/filters/EasyList.txt>
 
 <https://bitbucket.org/hacamer/adrules/raw/main/adblock.txt>
