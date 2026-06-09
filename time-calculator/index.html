@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="https://cyao2q.github.io/images/alarm.png">
+    <title>未来时间计算器</title>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            --card-bg: rgba(255, 255, 255, 0.08);
+            --card-border: rgba(255, 255, 255, 0.15);
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --input-bg: rgba(0, 0, 0, 0.3);
+            --live-time-color: #67e8f9;
+            --btn-quick-bg: rgba(255, 255, 255, 0.06);
+            --btn-quick-hover: rgba(255, 255, 255, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            min-height: 83vh;
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            padding: 20px;
+        }
+
+        .container {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 32px;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-3px);
+        }
+
+        .live-clock-section {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
+            padding: 12px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .live-label {
+            font-size: 0.75rem;
+            color: var(--text-sub);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .live-time {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--live-time-color);
+            letter-spacing: 1px;
+            text-shadow: 0 0 12px rgba(103, 232, 249, 0.3);
+        }
+
+        .calc-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .section-title {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            margin-bottom: 8px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            background: var(--input-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            color: var(--text-main);
+            font-size: 1.3rem;
+            text-align: center;
+            transition: all 0.2s ease;
+            font-weight: 600;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+
+        .quick-btn {
+            background: var(--btn-quick-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-weight: 500;
+        }
+
+        .quick-btn:hover {
+            background: var(--btn-quick-hover);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .quick-btn:active {
+            transform: scale(0.95);
+        }
+
+        .hours-grid, .minutes-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .hours-grid .quick-btn, .minutes-grid .quick-btn {
+            padding: 8px 0;
+        }
+
+        .result-section {
+            margin-top: 8px;
+            padding-top: 12px;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .result-box {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 16px;
+            border-radius: 16px;
+            border: 1px solid rgba(99, 102, 241, 0.25);
+            text-align: center;
+        }
+
+        .result-label {
+            font-size: 0.8rem;
+            color: #a5b4fc;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .result-date {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            margin-bottom: 4px;
+        }
+
+        .result-time {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="live-clock-section">
+            <div class="live-label">当前系统时间</div>
+            <div class="live-time" id="liveClock">00:00:00</div>
+        </div>
+
+        <div class="result-section">
+            <div class="result-box">
+                <div class="result-label">计算后的未来时间</div>
+                <div class="result-date" id="resultDate">----年--月--日</div>
+                <div class="result-time" id="resultTime">00:00</div>
+            </div>
+        </div>
+
+        <div class="calc-panel">
+            <div class="input-block">
+                <div class="section-title">增加小时 (h)</div>
+                <input type="number" id="inputHours" value="0" min="0" oninput="calculateFutureTime()">
+                <div class="hours-grid">
+                    <button class="quick-btn" onclick="setQuickTime('hours', 1)">+1</button>
+                    <button class="quick-btn" onclick="setQuickTime('hours', 2)">+2</button>
+                    <button class="quick-btn" onclick="setQuickTime('hours', 3)">+3</button>
+                    <button class="quick-btn" onclick="setQuickTime('hours', 4)">+4</button>
+                    <button class="quick-btn" onclick="setQuickTime('hours', 5)">+5</button>
+                    <button class="quick-btn" onclick="setQuickTime('hours', 6)">+6</button>
+                    <button class="quick-btn" onclick="setQuickTime('hours', 7)">+7</button>
+                    <button class="quick-btn" onclick="setQuickTime('hours', 8)">+8</button>
+                    <button class="quick-btn" onclick="setQuickTime('hours', 9)">+9</button>
+                    <button class="quick-btn" onclick="setQuickTime('hours', 10)">+10</button>
+                    <button class="quick-btn" onclick="setQuickTime('hours', 11)">+11</button>
+                    <button class="quick-btn" onclick="setQuickTime('hours', 12)">+12</button>
+                </div>
+            </div>
+
+            <div class="input-block">
+                <div class="section-title">增加分钟 (m)</div>
+                <input type="number" id="inputMinutes" value="0" min="0" oninput="calculateFutureTime()">
+                <div class="minutes-grid">
+                    <button class="quick-btn" onclick="setQuickTime('minutes', 1)">+1</button>
+                    <button class="quick-btn" onclick="setQuickTime('minutes', 5)">+5</button>
+                    <button class="quick-btn" onclick="setQuickTime('minutes', 10)">+10</button>
+                    <button class="quick-btn" onclick="setQuickTime('minutes', 15)">+15</button>
+                    <button class="quick-btn" onclick="setQuickTime('minutes', 20)">+20</button>
+                    <button class="quick-btn" onclick="setQuickTime('minutes', 25)">+25</button>
+                    <button class="quick-btn" onclick="setQuickTime('minutes', 30)">+30</button>
+                    <button class="quick-btn" onclick="setQuickTime('minutes', 35)">+35</button>
+                    <button class="quick-btn" onclick="setQuickTime('minutes', 40)">+40</button>
+                    <button class="quick-btn" onclick="setQuickTime('minutes', 45)">+45</button>
+                    <button class="quick-btn" onclick="setQuickTime('minutes', 50)">+50</button>
+                    <button class="quick-btn" onclick="setQuickTime('minutes', 55)">+55</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 1. 实时时钟更新逻辑
+        function updateLiveClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('liveClock').innerText = `${hours}:${minutes}:${seconds}`;
+        }
+
+        updateLiveClock();
+
+        setInterval(updateLiveClock, 1000);
+
+        // 2. 点击快捷按钮覆盖输入框的值
+        function setQuickTime(type, value) {
+            const inputId = type === 'hours' ? 'inputHours' : 'inputMinutes';
+            document.getElementById(inputId).value = value;
+            calculateFutureTime();
+        }
+
+        function calculateFutureTime() {
+            const now = new Date();
+            const addHours = parseInt(document.getElementById('inputHours').value) || 0;
+            const addMinutes = parseInt(document.getElementById('inputMinutes').value) || 0;
+
+            now.setHours(now.getHours() + addHours);
+            now.setMinutes(now.getMinutes() + addMinutes);
+
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const date = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+
+            document.getElementById('resultDate').innerText = `${year}年${month}月${date}日`;
+            document.getElementById('resultTime').innerText = `${hours}:${minutes}`;
+        }
+
+        calculateFutureTime();
+    </script>
+</body>
+</html>
