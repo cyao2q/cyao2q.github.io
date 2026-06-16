@@ -710,30 +710,6 @@
     </style>
 </head>
 <body inmaintabuse="1">
-
-<script>
-    $(document).on('click', '#moreMenu', function () {
-        let display = document.getElementById("moreMenuDropDown").style.display
-        console.log('moreMenu', display);
-        if (display === 'block') {
-            document.getElementById("moreMenuDropDown").style.display = "none";
-            document.getElementById("moreMenu").style.color = "rgba(255,255,255,.7)";
-            document.getElementById("moreMenu").style.fontWeight = "400";
-        } else {
-            document.getElementById("moreMenuDropDown").style.display = "block";
-            document.getElementById("moreMenu").style.color = "#fff";
-            document.getElementById("moreMenu").style.fontWeight = "700";
-        }
-    });
-    $(document).on('click', '#searchIcon', function () {
-        var searchForm = $(this).parents('.search-item:eq(0)');
-        var q = searchForm.find('input[name=q]').val().trim();
-        // 无关键词时不响应
-        if (q.length > 0) {
-            searchForm.submit();
-        }
-    });
-</script>
 <script type="text/javascript" src="./resources/core-min.js"></script>
 <script type="text/javascript" src="./resources/sha1.js"></script>
 <script type="text/javascript" src="./resources/sha256.js"></script>
